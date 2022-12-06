@@ -1,3 +1,6 @@
+#웹 스크래핑 코드
+#텔레그램 push
+
 
 #https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu
 import requests

@@ -1,4 +1,4 @@
-
+#스크래핑 코드
 #https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu
 import requests
 from bs4 import BeautifulSoup

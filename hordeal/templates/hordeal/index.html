@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap 각 버전별로 다른 기능 존재하는데, 그래서 html 페이지별로 다른 버전 쓰려고 하면 템플릿 상속/오버라이딩 진행하면 됨.-->
+    {% block auth_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    {% endblock auth_css %}
+    <!-- # 부트스트랩 font 사용하는 코드      -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>
+    </title>
+
+</head>
+
+</html>
+<style>
+    img {
+        width: 45px;
+    }
+    th {
+        text-align: center;
+        white-space: nowrap;
+    }
+    td.center {
+        text-align: center;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+<h1 style="text-align: center ;"> HanBBaeng's Deals </h1>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">img_url</th>
+                <th scope="col">title</th>
+                <th scope="col">replay_count</th>
+                <th scope="col">up_count</th>
+                <th scope="col">cdate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deals_pt in deals %}
+            <tr>
+                <td><img src = {{deals_pt.img_url}} ></td>
+                <td><a href="{{ deals_pt.link }}">{{ deals_pt.title }}</td>
+                <td>{{deals_pt.replay_count}}</td>
+                <td>{{deals_pt.up_count}}</td>
+                <td>{{deals_pt.cdate}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
