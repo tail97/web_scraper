@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#add user
+생각노트/
+my_setting.py
+teltram_info.py

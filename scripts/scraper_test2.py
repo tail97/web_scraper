@@ -2,6 +2,15 @@
 #https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu
 import requests
 from bs4 import BeautifulSoup
+import telegram
+import teltram_info
+
+
+
+TLGM_BOT_API = teltram_info.TLGM_BOT_API
+tlgm_bot = telegram.Bot(TLGM_BOT_API) # api를 가진 텔레그램 봇 객체 생성
+
+
 
 # 요청보내기
 url = 'https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu'
@@ -26,10 +35,19 @@ for item in items:
         link = 'https://www.ppomppu.co.kr/zboard/' + link 
         replay_count = item.select("td span.list_comment2 span")[0].text.strip()
         up_count = item.select("td.eng.list_vspace")[-2].text.strip()
+        up_count = up_count.split("-")[0]
+        up_count = int(up_count)
+
         print(up_count)
         if up_count >=3: # 추천인 3개이상일 때
             # 터미널 프린트
             print(img_url, title, replay_count, link ,up_count)
+            #텔레그램 봇에 출력
+            # tlgm_bot.sendMessage(chat_id, message)
+            chat_id = teltram_info.chat_id
+            message = title
+            
+            tlgm_bot.sendMessage(chat_id, message)
     except Exception as e:
         continue
 

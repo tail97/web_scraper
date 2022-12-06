@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from .. import my_setting
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^9s*drhd3yj1_w)#t$s@6-@w7)5@#@azv@%5!yz_kp*k5_-wa*'
+SECRET_KEY = my_setting.SECRET_KEY # 키를 다른 파일에 넣고 git에 공유할때 비밀유지가 된다 . 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

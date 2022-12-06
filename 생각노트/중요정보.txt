@@ -1,0 +1,8 @@
+텔레그램 HTTP API
+5824876045:AAEcwtGNFemlup8V0SUqedxeilpk0xAH3jU
+
+chat id : 5665499512
+
+
+git 레포지토리 ssh.url
+git@github.com:tail97/web_scraper.git
