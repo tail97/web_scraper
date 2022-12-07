@@ -10,8 +10,12 @@ import telegram
 # from . import teltram_info django.extensions 설치후
 import env_info
 from hordeal.models import Deal
+from datetime import datetime, timedelta
 
-
+# db 테이블 데이터 유지기간 설정 변수
+during_date = 3
+#db 테이블 저장을 휘한 추천 개수 지정(3개이상) ,유지보수하기 쉬운 방법
+up_count_limit=3
 
 TLGM_BOT_API = env_info.TLGM_BOT_API
 tlgm_bot = telegram.Bot(TLGM_BOT_API) # api를 가진 텔레그램 봇 객체 생성
@@ -31,6 +35,12 @@ items = soup.select("tr.list1,tr.list0")
 
 # img_url, title, link, replay_count, up_count을 스크래핑.
 def run():
+     #DB에 저장되는 데이터가 3시간만 유지
+
+    # row, _= Deal.objects.filter(cdate__lte = datetime.now() - timedelta(days=3)).delete()
+    row, _= Deal.objects.filter(cdate__lte = datetime.now() - timedelta(minutes = during_date)).delete()
+    print(row,"deals deleted")
+    
     for item in items:
         try:
             img_url = item.select("img.thumb_border")[0].get('src').strip()#strip은 양쪽 공백제거
@@ -45,8 +55,9 @@ def run():
             up_count = up_count.split("-")[0]
             up_count = int(up_count)
 
-            print(up_count)
-            if up_count >=3: # 추천인 3개이상일 때
+        
+            # print(up_count)
+            if up_count >=up_count_limit: # 추천인 3개이상일 때
                 # 터미널 프린트
                 print(img_url, title, replay_count, link ,up_count)
                 #텔레그램 봇에 출력
